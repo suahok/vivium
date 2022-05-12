@@ -40,7 +40,7 @@ router.beforeEach((to, from, next) => {
 
   if (!loginStore.isLoggedIn && to.meta.requiresAuth) {
     loginStore.changeRedirectEncode(to.fullPath)
-    setTimeout(() => next({ path: "/login", replace: true, query: { redirect: loginStore.redirect } }), 500)
+    return next({ path: "/login", replace: true, query: { redirect: loginStore.redirect } })
   } else {
     return next()
   }
