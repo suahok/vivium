@@ -23,7 +23,7 @@ const transitionName = ref("slide-left")
 watch(
   () => router.currentRoute.value,
   (to, from) => {
-    if (to.meta.order > from.meta.order) {
+    if (to.meta.order > from.meta.order || to.path === "/login") {
       transitionName.value = "slide-left"
     } else {
       transitionName.value = "slide-right"

@@ -7,7 +7,7 @@ export const useLoginStore = defineStore("login", {
   state() {
     return {
       isLoggedIn: storage.getItem("isLoggedIn"),
-      redirect: ""
+      redirect: storage.getItem("redirect")
     }
   },
   actions: {
@@ -17,12 +17,17 @@ export const useLoginStore = defineStore("login", {
     login() {
       this.isLoggedIn = true
       storage.setItem("isLoggedIn", this.isLoggedIn)
+      this.redirect && storage.setItem("redirect", this.redirect)
       const redirect = this.redirect ? decodeURIComponent(atob(this.redirect)) : "/"
       this.router.push({ path: redirect, replace: true })
     },
     logout() {
       storage.clear()
-      this.router.go(0)
+      if (!this.redirect) {
+        this.router.replace("/login")
+        return
+      }
+      this.router.push({ path: "/login", replace: true, query: { redirect: this.redirect } })
     }
   }
 })
