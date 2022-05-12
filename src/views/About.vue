@@ -3,7 +3,7 @@
     <div class="about">
       <n-space size="large">
         <n-button color="#fa8072" size="large" @click="$router.push('/')">ToHome</n-button>
-        <n-button color="#fa8072" size="large" @click="loginStore.logout">Logout</n-button>
+        <n-button ghost color="#fa8072" size="large" @click="loginStore.logout">Logout</n-button>
       </n-space>
     </div>
   </div>
