@@ -2,7 +2,7 @@
   <Suspense>
     <template #default>
       <router-view #default="{ Component, route }">
-        <transition :name="transitionName">
+        <transition appear :name="transitionName">
           <component :is="Component" :key="route.name" />
         </transition>
       </router-view>
@@ -23,11 +23,9 @@ const transitionName = ref("slide-left")
 watch(
   () => router.currentRoute.value,
   (to, from) => {
-    if (to.meta.order > from.meta.order || to.path === "/login") {
+    if (to.path === "/login" || !from.meta.order || to.meta.order >= from.meta.order)
       transitionName.value = "slide-left"
-    } else {
-      transitionName.value = "slide-right"
-    }
+    else transitionName.value = "slide-right"
   }
 )
 </script>
