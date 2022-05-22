@@ -8,7 +8,7 @@
       </router-view>
     </template>
     <template #fallback>
-      <n-spin size="large" />
+      <n-spin size="large" :stroke-width="25" stroke="teal" />
     </template>
   </Suspense>
 </template>
