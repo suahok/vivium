@@ -1,13 +1,11 @@
-import { mande } from "mande"
+import { request } from "@/utils/request"
 import { defineStore } from "pinia"
 
-const api = mande("api")
-
 type Todo = {
-  completed: boolean
   id: number
   title: string
   userId: number
+  completed: boolean
 }
 
 type State = {
@@ -18,16 +16,21 @@ type Actions = {
   fetchTodos: (userId: number) => void
 }
 
-export const useTodosStore = defineStore<string, State, {}, Actions>("todos", {
+export const useTodoStore = defineStore<string, State, {}, Actions>("todos", {
   state: () => ({
     todos: []
   }),
   actions: {
     async fetchTodos(userId) {
       try {
-        this.todos = await api.get<Todo[]>("todos", { query: { userId } })
+        this.todos = await request<Todo[]>({
+          method: "GET",
+          url: "/todos",
+          params: { userId }
+        })
+        return
       } catch (error) {
-        console.log(error)
+        console.error(error)
       }
     }
   }

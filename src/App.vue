@@ -2,7 +2,7 @@
   <Suspense>
     <template #default>
       <router-view #default="{ Component, route }">
-        <transition appear :name="transitionName">
+        <transition :name="transitionName">
           <component :is="Component" :key="route.name" />
         </transition>
       </router-view>
@@ -18,13 +18,17 @@ import { watch, ref } from "vue"
 import { useRouter } from "vue-router"
 
 const router = useRouter()
+
 const transitionName = ref("slide-left")
+
+function splitPath(path: string) {
+  return path.split("/").filter(item => item).length || 1
+}
 
 watch(
   () => router.currentRoute.value,
   (to, from) => {
-    if (to.path === "/login" || !from.meta.order || to.meta.order >= from.meta.order)
-      transitionName.value = "slide-left"
+    if (splitPath(to.path) >= splitPath(from.path)) transitionName.value = "slide-left"
     else transitionName.value = "slide-right"
   }
 )
@@ -40,7 +44,6 @@ body {
 .wrapper {
   width: 100%;
   height: 100vh;
-  padding: 20px;
   box-sizing: border-box;
 }
 

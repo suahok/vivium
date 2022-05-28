@@ -1,12 +1,10 @@
 import { defineStore } from "pinia"
-import { useStorageEvent } from "@/utils/storage"
-
-const storage = useStorageEvent()
+import { storage } from "@/utils/storage"
 
 export const useLoginStore = defineStore("login", {
   state() {
     return {
-      isLoggedIn: storage.getItem("isLoggedIn"),
+      isLoggedIn: storage.get("isLoggedIn"),
       redirect: ""
     }
   },
@@ -16,7 +14,7 @@ export const useLoginStore = defineStore("login", {
     },
     login() {
       this.isLoggedIn = true
-      storage.setItem("isLoggedIn", this.isLoggedIn)
+      storage.set("isLoggedIn", this.isLoggedIn)
       const redirect = this.redirect ? decodeURIComponent(atob(this.redirect)) : "/"
       this.router.push({ path: redirect, replace: true })
     },
