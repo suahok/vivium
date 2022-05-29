@@ -1,5 +1,5 @@
 import path from "path"
-import { defineConfig } from "vite"
+import { defineConfig, splitVendorChunkPlugin } from "vite"
 import vue from "@vitejs/plugin-vue"
 import vueJsx from "@vitejs/plugin-vue-jsx"
 import { viteMockServe } from "vite-plugin-mock"
@@ -15,7 +15,8 @@ export default defineConfig({
     }),
     viteMockServe({
       mockPath: "./src/mock"
-    })
+    }),
+    splitVendorChunkPlugin()
   ],
   resolve: {
     alias: {
@@ -35,11 +36,6 @@ export default defineConfig({
     chunkSizeWarningLimit: 2048,
     rollupOptions: {
       output: {
-        manualChunks(chunkAlias) {
-          if (/(node_modules)/g.exec(chunkAlias)) {
-            return chunkAlias.toString().split("node_modules/")[1].split("/")[0].toString()
-          }
-        },
         entryFileNames: "scripts/[name].[hash].js",
         chunkFileNames: "scripts/[name].[hash].js",
         assetFileNames({ name }) {
@@ -52,12 +48,5 @@ export default defineConfig({
         }
       }
     }
-    // minify: "terser",
-    // terserOptions: {
-    //   compress: {
-    //     drop_console: true,
-    //     drop_debugger: true
-    //   }
-    // }
   }
 })
