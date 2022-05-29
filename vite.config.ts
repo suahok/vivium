@@ -1,4 +1,4 @@
-import path from "path"
+import { resolve } from "path"
 import { defineConfig, splitVendorChunkPlugin } from "vite"
 import vue from "@vitejs/plugin-vue"
 import vueJsx from "@vitejs/plugin-vue-jsx"
@@ -10,17 +10,13 @@ export default defineConfig({
   plugins: [
     vue(),
     vueJsx(),
-    Components({
-      resolvers: [NaiveUiResolver()]
-    }),
-    viteMockServe({
-      mockPath: "./src/mock"
-    }),
+    Components({ resolvers: [NaiveUiResolver()] }),
+    viteMockServe({ mockPath: "./src/mock" }),
     splitVendorChunkPlugin()
   ],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "src")
+      "@": resolve(__dirname, "src")
     }
   },
   server: {
@@ -41,9 +37,9 @@ export default defineConfig({
         assetFileNames({ name }) {
           const extname = name?.toString().split(".")[1]
           if (extname === "css") {
-            return "styles/[name].[hash].[ext]"
+            return "styles/[name]-[hash].[ext]"
           } else {
-            return "static/[ext]/[name].[hash].[ext]"
+            return "static/[ext]/[name]-[hash].[ext]"
           }
         }
       }
