@@ -6,20 +6,22 @@ import { storage } from "@/utils/storage"
 import router from "@/router"
 
 function _import(pathname: string) {
-  return () => import(pathname + ".vue")
+  return () => import("../" + pathname + ".vue")
 }
 
 function menusToRoutes(menus: MenuRow[]) {
   return menus.map(item => {
+    item.pathname = item.pathname?.split("src")[1].toString() + "/" + item.name
+
     if (item.children) {
-      item.component = _import(`${item.pathname}/${item.name}`)
+      item.component = _import(item.pathname)
       menusToRoutes(item.children)
       delete item.id
       delete item.pid
       delete item.pathname
       return item
     } else {
-      item.component = _import(`${item.pathname}/${item.name}`)
+      item.component = _import(item.pathname)
       delete item.id
       delete item.pid
       delete item.pathname

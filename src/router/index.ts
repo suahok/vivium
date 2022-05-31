@@ -3,7 +3,7 @@ import { useLoginStore } from "@/stores/login"
 import { registerRoutes } from "./helpers"
 
 function _import(filename: string) {
-  return () => import(`/src/views/${filename}.vue`)
+  return () => import(`../views/${filename}.vue`)
 }
 
 const router = createRouter({
