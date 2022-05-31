@@ -18,20 +18,19 @@ import { watch, ref } from "vue"
 import { useRouter } from "vue-router"
 
 const router = useRouter()
-
 const transitionName = ref("slide-left")
-
-function splitPath(path: string) {
-  return path.split("/").filter(item => item).length || 1
-}
 
 watch(
   () => router.currentRoute.value,
-  (to, from) => {
+  function (to, from) {
     if (splitPath(to.path) >= splitPath(from.path)) transitionName.value = "slide-left"
     else transitionName.value = "slide-right"
   }
 )
+
+function splitPath(path: string) {
+  return path.split("/").filter(item => item).length || 1
+}
 </script>
 
 <style>

@@ -13,7 +13,7 @@ type State = {
 }
 
 type Actions = {
-  fetchTodos: (userId: number) => void
+  fetchTodos(userId: number): void
 }
 
 export const useTodoStore = defineStore<string, State, {}, Actions>("todos", {
