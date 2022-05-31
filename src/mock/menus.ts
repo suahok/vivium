@@ -17,7 +17,7 @@ export const menus: MenuRow[] = [
   {
     id: 1,
     pid: 0,
-    path: "office",
+    path: "/office",
     pathname: "/src/views/office",
     name: "Office",
     meta: { title: "办公管理" }
@@ -49,7 +49,7 @@ export const menus: MenuRow[] = [
   {
     id: 5,
     pid: 0,
-    path: "system",
+    path: "/system",
     pathname: "/src/views/system",
     name: "System",
     meta: { title: "系统设置" }
