@@ -8,7 +8,7 @@
       </router-view>
     </template>
     <template #fallback>
-      <n-spin size="large" :stroke-width="25" stroke="teal" />
+      <fading-circle />
     </template>
   </Suspense>
 </template>
@@ -40,10 +40,11 @@ body {
   background-color: #f4f4f4;
 }
 
-.wrapper {
+.common-wrapper {
   width: 100%;
   height: 100vh;
   box-sizing: border-box;
+  overflow-y: auto;
 }
 
 .slide-left-enter-active,

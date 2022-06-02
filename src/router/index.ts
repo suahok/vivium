@@ -17,13 +17,13 @@ const router = createRouter({
     {
       path: "/login",
       name: "Login",
-      component: _import("common/Login"),
+      component: _import("Login"),
       props: route => ({ redirect: route.query.redirect })
     },
     {
       path: "/404",
       name: "NotFound",
-      component: _import("common/NotFound")
+      component: _import("NotFound")
     }
   ]
 })
@@ -48,11 +48,11 @@ router.beforeEach((to, from, next) => {
     }
   } else {
     routeFlag = false
-    if (to.path === "/login") {
-      next()
-    } else {
+    if (to.path !== "/login") {
       loginStore.changeRedirectEncode(to.fullPath)
       next({ path: "/login", replace: true, query: { redirect: loginStore.redirect } })
+    } else {
+      next()
     }
   }
 })

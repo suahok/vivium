@@ -3,6 +3,8 @@ import { createPinia } from "pinia"
 import router from "./router"
 import App from "./App.vue"
 
+import "virtual:windi.css"
+
 window.addEventListener("storage", evt => {
   if (!evt.key || evt.key === "isLoggedIn") {
     router.go(0)

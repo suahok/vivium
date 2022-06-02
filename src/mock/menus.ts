@@ -18,7 +18,7 @@ export const menus: MenuRow[] = [
     id: 1,
     pid: 0,
     path: "/office",
-    pathname: "/src/views/office",
+    pathname: "views/office",
     name: "Office",
     meta: { title: "办公管理" }
   },
@@ -27,7 +27,7 @@ export const menus: MenuRow[] = [
     pid: 1,
     path: "ask-off",
     name: "AskOff",
-    pathname: "/src/views/office/ask-off",
+    pathname: "views/office/ask-off",
     meta: { title: "请假申请" }
   },
   {
@@ -35,7 +35,7 @@ export const menus: MenuRow[] = [
     pid: 1,
     path: "on-business",
     name: "OnBusiness",
-    pathname: "/src/views/office",
+    pathname: "views/office",
     meta: { title: "出差申请" }
   },
   {
@@ -43,14 +43,14 @@ export const menus: MenuRow[] = [
     pid: 2,
     path: "record",
     name: "Record",
-    pathname: "/src/views/office/ask-off",
+    pathname: "views/office/ask-off",
     meta: { title: "请假记录" }
   },
   {
     id: 5,
     pid: 0,
     path: "/system",
-    pathname: "/src/views/system",
+    pathname: "views/system",
     name: "System",
     meta: { title: "系统设置" }
   },
@@ -59,7 +59,7 @@ export const menus: MenuRow[] = [
     pid: 5,
     path: "permission",
     name: "Permission",
-    pathname: "/src/views/system/permission",
+    pathname: "views/system/permission",
     meta: { title: "权限管理" }
   },
   {
@@ -67,7 +67,7 @@ export const menus: MenuRow[] = [
     pid: 6,
     path: "user-role",
     name: "UserRole",
-    pathname: "/src/views/system/permission",
+    pathname: "views/system/permission",
     meta: { title: "用户角色" }
   },
   {
@@ -75,7 +75,7 @@ export const menus: MenuRow[] = [
     pid: 6,
     path: "menu-setup",
     name: "MenuSetup",
-    pathname: "/src/views/system/permission",
+    pathname: "views/system/permission",
     meta: { title: "菜单设置" }
   }
 ]

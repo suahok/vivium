@@ -11,17 +11,15 @@ function _import(pathname: string) {
 
 function menusToRoutes(menus: MenuRow[]) {
   return menus.map(item => {
-    item.pathname = item.pathname?.split("src")[1].toString() + "/" + item.name
-
     if (item.children) {
-      item.component = _import(item.pathname)
+      item.component = _import(`${item.pathname}/${item.name}`)
       menusToRoutes(item.children)
       delete item.id
       delete item.pid
       delete item.pathname
       return item
     } else {
-      item.component = _import(item.pathname)
+      item.component = _import(`${item.pathname}/${item.name}`)
       delete item.id
       delete item.pid
       delete item.pathname
@@ -42,8 +40,8 @@ export const registerRoutes = async (): Promise<boolean> => {
     if (!storage.has("menus")) {
       await menuStore.fetchMenus()
     }
-    const dynamicRoutes = menusToRoutes(toTree(menuStore.menus))
-    if (dynamicRoutes.length) {
+    if (menuStore.menus.length) {
+      const dynamicRoutes = menusToRoutes(toTree(menuStore.menus))
       dynamicRoutes.forEach(route => {
         router.addRoute(route as RouteRecordRaw)
       })
