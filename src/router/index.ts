@@ -37,12 +37,13 @@ router.beforeEach((to, from, next) => {
     if (routeFlag) {
       next()
     } else {
-      registerRoutes()
+      registerRoutes(router)
         .then(() => {
           routeFlag = true
           next({ ...to, replace: true })
         })
         .catch(() => {
+          routeFlag = false
           next({ path: "/404", replace: true })
         })
     }

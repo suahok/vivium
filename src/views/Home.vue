@@ -3,8 +3,8 @@
     <button class="w-24 h-10 text-white font-seri bg-emerald-600 rounded m-4" @click="$router.push('/system')">
       Button
     </button>
-    <img class="image" src="@/images/133-1920x1080.jpg" alt="133-1920x1080.jpg" />
-    <img class="image" src="@/images/406-1920x1080.webp" alt="406-1920x1080.webp" />
+    <img class="image" src="@/assets/images/133-1920x1080.jpg" alt="133-1920x1080.jpg" />
+    <img class="image" src="@/assets/images/406-1920x1080.webp" alt="406-1920x1080.webp" />
   </div>
 </template>
 

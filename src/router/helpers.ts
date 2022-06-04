@@ -1,9 +1,8 @@
-import type { RouteRecordRaw } from "vue-router"
+import type { Router, RouteRecordRaw } from "vue-router"
 import type { MenuRow } from "@/mock/menus"
 import { useMenuStore } from "@/stores/menus"
 import { toTree } from "@/utils/toTree"
 import { storage } from "@/utils/storage"
-import router from "@/router"
 
 function _import(pathname: string) {
   return () => import("../" + pathname + ".vue")
@@ -28,7 +27,7 @@ function menusToRoutes(menus: MenuRow[]) {
   })
 }
 
-export const registerRoutes = async (): Promise<boolean> => {
+export const registerRoutes = async (router: Router): Promise<boolean> => {
   const menuStore = useMenuStore()
 
   router.addRoute({
@@ -38,7 +37,7 @@ export const registerRoutes = async (): Promise<boolean> => {
 
   try {
     if (!storage.has("menus")) {
-      await menuStore.fetchMenus()
+      await menuStore.getMenus()
     }
     if (menuStore.menus.length) {
       const dynamicRoutes = menusToRoutes(toTree(menuStore.menus))

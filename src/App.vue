@@ -78,7 +78,7 @@ body {
   left: 0;
 }
 
-/* .scale-enter-active,
+.scale-enter-active,
 .scale-leave-active {
   transition: all 0.2s ease-in-out;
 }
@@ -88,5 +88,5 @@ body {
   opacity: 0;
   border-radius: 30px;
   transform: scale(0.8);
-} */
+}
 </style>

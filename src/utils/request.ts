@@ -26,11 +26,7 @@ interface RequestRow {
 export function request<T = any, D = any>(config: RequestRow & AxiosRequestConfig<D>) {
   return new Promise<T>((resolve, reject) => {
     instance(config)
-      .then(({ data }: AxiosResponse<T>) => {
-        return resolve(data)
-      })
-      .catch(err => {
-        return reject(err)
-      })
+      .then(({ data }: AxiosResponse<T>) => resolve(data))
+      .catch(err => reject(err))
   })
 }

@@ -13,7 +13,7 @@ type State = {
 }
 
 type Actions = {
-  fetchTodos(userId: number): void
+  getTodos(id: number): Promise<boolean>
 }
 
 export const useTodoStore = defineStore<string, State, {}, Actions>("todos", {
@@ -21,16 +21,17 @@ export const useTodoStore = defineStore<string, State, {}, Actions>("todos", {
     todos: []
   }),
   actions: {
-    async fetchTodos(userId) {
+    async getTodos(userId) {
       try {
         this.todos = await request<Todo[]>({
-          method: "GET",
+          method: "get",
           url: "/todos",
           params: { userId }
         })
-        return
+        return true
       } catch (error) {
         console.error(error)
+        return false
       }
     }
   }

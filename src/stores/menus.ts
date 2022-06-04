@@ -8,7 +8,7 @@ type State = {
 }
 
 type Actions = {
-  fetchMenus(): Promise<any>
+  getMenus(): Promise<boolean>
 }
 
 export const useMenuStore = defineStore<string, State, {}, Actions>("todos", {
@@ -16,7 +16,7 @@ export const useMenuStore = defineStore<string, State, {}, Actions>("todos", {
     menus: storage.get("menus") || []
   }),
   actions: {
-    async fetchMenus(): Promise<boolean> {
+    async getMenus() {
       try {
         this.menus = await request<MenuRow[]>({
           method: "GET",
