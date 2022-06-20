@@ -6,7 +6,7 @@ import App from "./App.vue"
 import "virtual:windi.css"
 
 window.addEventListener("storage", evt => {
-  if (!evt.key || evt.key === "isLoggedIn") {
+  if (!evt.key || evt.key === "isLogined") {
     router.go(0)
   }
 })

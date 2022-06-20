@@ -33,7 +33,7 @@ let routeFlag = false
 router.beforeEach((to, from, next) => {
   const loginStore = useLoginStore()
 
-  if (loginStore.isLoggedIn) {
+  if (loginStore.isLogined) {
     if (routeFlag) {
       next()
     } else {
@@ -50,7 +50,7 @@ router.beforeEach((to, from, next) => {
   } else {
     routeFlag = false
     if (to.path !== "/login") {
-      loginStore.changeRedirectEncode(to.fullPath)
+      loginStore.redirectEncode(to.fullPath)
       next({ path: "/login", replace: true, query: { redirect: loginStore.redirect } })
     } else {
       next()

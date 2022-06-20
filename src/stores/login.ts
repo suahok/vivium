@@ -4,17 +4,17 @@ import { storage } from "@/utils/storage"
 export const useLoginStore = defineStore("login", {
   state() {
     return {
-      isLoggedIn: storage.get("isLoggedIn"),
+      isLogined: storage.get("isLogined"),
       redirect: ""
     }
   },
   actions: {
-    changeRedirectEncode(path: string) {
+    redirectEncode(path: string) {
       this.redirect = btoa(encodeURIComponent(path))
     },
     login() {
-      this.isLoggedIn = true
-      storage.set("isLoggedIn", this.isLoggedIn)
+      this.isLogined = true
+      storage.set("isLogined", this.isLogined)
       const redirect = this.redirect ? decodeURIComponent(atob(this.redirect)) : "/"
       this.router.push({ path: redirect, replace: true })
     },
