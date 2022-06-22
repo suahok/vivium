@@ -4,8 +4,10 @@ import { useMenuStore } from "@/stores/menus"
 import { toTree } from "@/utils/toTree"
 import { storage } from "@/utils/storage"
 
+const modules = import.meta.glob("../**/*.vue")
 function _import(pathname: string) {
-  return () => import("../" + pathname + ".vue")
+  // return () => import(`../${pathname}.vue`)
+  return modules[`../${pathname}.vue`]
 }
 
 function menusToRoutes(menus: MenuRow[]) {
