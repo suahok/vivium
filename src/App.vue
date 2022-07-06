@@ -3,7 +3,9 @@
     <template #default>
       <router-view #default="{ Component, route }">
         <transition :name="transitionName">
-          <component :is="Component" :key="route.name" />
+          <keep-alive>
+            <component :is="Component" :key="route.name" />
+          </keep-alive>
         </transition>
       </router-view>
     </template>
@@ -25,7 +27,8 @@ watch(
   function (to, from) {
     if (splitPath(to.path) >= splitPath(from.path)) transitionName.value = "slide-left"
     else transitionName.value = "slide-right"
-  }
+  },
+  { flush: "post" }
 )
 
 function splitPath(path: string) {
@@ -33,7 +36,7 @@ function splitPath(path: string) {
 }
 </script>
 
-<style>
+<style lang="scss">
 body {
   margin: 0;
   overflow: hidden;
@@ -41,9 +44,11 @@ body {
 }
 
 .common-wrapper {
-  width: 100%;
-  height: 100vh;
+  inline-size: 100%;
+  block-size: 100vh;
   box-sizing: border-box;
+  padding: 1rem;
+  scroll-snap-type: y mandatory;
   overflow-y: auto;
 }
 
