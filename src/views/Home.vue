@@ -21,7 +21,7 @@ function onAnimate() {
 
 <style scoped>
 .svg-box {
-  background: rgba(8, 145, 178, 0.6) url("@/assets/svg/Designer_Flatline.svg") no-repeat scroll center / contain
+  background: rgba(8, 145, 178, 0.6) url("@/assets/svg/Designer-Flatline.svg") no-repeat scroll center / contain
     content-box content-box;
 }
 </style>
